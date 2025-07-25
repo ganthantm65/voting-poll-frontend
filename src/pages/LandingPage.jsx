@@ -1,5 +1,6 @@
 import { BarChart3, CheckCircle, Cross, Delete, Menu, Shield, UserCheck, X } from "lucide-react";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage = () => {
     const [menuVisible,setMenuVisible]=useState(false);
@@ -12,6 +13,7 @@ const LandingPage = () => {
         {icons:<UserCheck className="text-green-600" size={40}/>,title:"User-Friendly Interface",description:"Intuitive design for easy navigation and participation."},
         {icons:<BarChart3 className="text-green-600" size={40}/>,title:"Analytics Dashboard",description:"Get detailed insights and analytics on poll results."},
     ]
+    const navigate=useNavigate();
   return (
     <div className="w-screen min-h-screen flex flex-col justify-between bg-[#F0FDF4] font-sans gap-30">
       <nav className="w-full py-4 bg-white shadow-md flex items-center justify-between px-6">
@@ -24,7 +26,9 @@ const LandingPage = () => {
           <p className="text-lg text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer"><a href="">About</a></p>
           <p className="text-lg text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer"><a href="#feature">Features</a></p>
         </div>
-        <button className="hidden md:block bg-gradient-to-r from-green-400 to-emerald-600 px-5 py-2 rounded-lg text-white font-medium hover:from-green-500 hover:to-emerald-700 transition duration-200">
+        <button
+        onClick={()=>navigate("/login/navigator")}
+        className="hidden md:block bg-gradient-to-r from-green-400 to-emerald-600 px-5 py-2 rounded-lg text-white font-medium hover:from-green-500 hover:to-emerald-700 transition duration-200">
           Login
         </button>
         {
@@ -40,7 +44,9 @@ const LandingPage = () => {
                 <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2"><a href="">Home</a></p>
                 <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2"><a href="">About</a></p>
                 <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2"><a href="#feature">Features</a></p>
-                <button className="w-full bg-gradient-to-r from-green-400 to-emerald-600 px-5 py-2 rounded-lg text-white font-medium hover:from-green-500 hover:to-emerald-700 transition duration-200">
+                <button
+                  onClick={()=>navigate("/login/navigator")}
+                  className="w-full bg-gradient-to-r from-green-400 to-emerald-600 px-5 py-2 rounded-lg text-white font-medium hover:from-green-500 hover:to-emerald-700 transition duration-200">
                   Login
                 </button>
             </div>):null
