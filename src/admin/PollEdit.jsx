@@ -20,6 +20,33 @@ const PollEdit = () => {
         updateOptions[index].name=e.target.value;
         setOptionList(updateOptions);
     }
+    const changeStatus=async()=>{
+        const updatedPoll={
+            poll_id:poll?.poll_id,
+            status
+        }
+        const url=`${import.meta.env.VITE_VOTE_API_URL}/api/updateStatus`;
+        const requestHeader={
+            method:"PUT",
+            headers:{
+                Authorization:`Bearer ${localStorage.getItem('token')}`,
+                'Content-Type':"application/json"
+            },
+            body:JSON.stringify(updatedPoll)
+        }
+        try{
+            const response=await fetch(url,requestHeader);
+            if(!response.ok){
+                throw new Error(response.statusText);
+            }
+            const data=await response.text();
+            console.log(data);
+            toast.success("Status Changes successfully!");
+            setStatus(status);
+        }catch(err){
+            toast.error(err.message);
+        }
+    }
     const updatePoll=async (e)=>{
         e.preventDefault()
         const updatedPoll={
@@ -31,7 +58,6 @@ const PollEdit = () => {
                 user_id:Number(localStorage.getItem('id')),
             }
         }
-        console.log(updatedPoll);
         
         const url=`${import.meta.env.VITE_VOTE_API_URL}/api/updatePoll`;
         const requestHeader={
@@ -61,6 +87,19 @@ const PollEdit = () => {
         <Toaster position='top-right' reverseOrder={false}/>
         <NavBar/>
         <div className='w-[90%] md:w-[75%] bg-white rounded-lg shadow-lg p-6'>
+            <h1 className='text-2xl font-bold text-emerald-600 mb-4'>Change Status</h1>
+            <div className='w-full flex flex-row items-center justify-center gap-2'>
+                <select
+                    value={status}
+                    onChange={updateStatus}
+                    className='p-2 border border-gray-300 rounded-lg w-3/4'
+                >
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                </select>
+                <button onClick={changeStatus} className='w-1/3 bg-emerald-600 text-white p-2 rounded-lg cursor-pointer text-center'>Change status</button>
+            </div>
+            <hr className='text-green-600 mt-4 mb-3'/>
             <h1 className='text-2xl font-bold text-emerald-600 mb-4'>Edit Poll</h1>
             <form className='flex flex-col items-start justify-evenly'>
                 <label className='w-full flex flex-col mb-4'>
@@ -92,19 +131,6 @@ const PollEdit = () => {
                         )
                     })
                 }
-                <label className='w-full flex flex-col mb-4'>
-                    <span className='text-gray-700'>
-                        Poll Status
-                    </span>
-                    <select
-                        value={status}
-                        onChange={updateStatus}
-                        className='mt-2 p-2 border border-gray-300 rounded-lg w-full'
-                    >
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                    </select>
-                </label>
                 <input type='submit' onClick={updatePoll} value="Save" className='w-full bg-emerald-600 text-white p-2 rounded-lg cursor-pointer text-center'/>
             </form>
         </div>

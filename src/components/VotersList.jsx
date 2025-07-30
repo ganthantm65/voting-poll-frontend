@@ -32,7 +32,7 @@ const VotersList = ({toast}) => {
     
     return (
         <div className='w-full lg:w-1/4 min-h-[45vh] lg:min-h-[90vh] flex flex-col items-start justify-start gap-6 lg:gap-10 bg-white shadow-lg rounded-lg p-3 sm:p-4 lg:p-6'>
-            <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-green-700'>Voter's List</h1>
+            <h1 className='text-2xl sm:text-3xl lg:text-4xl font-bold text-green-700'>User's List</h1>
             <div className='w-full h-full flex flex-col items-start justify-start overflow-y-auto'>
                 {
                     voters.length>0 ? (
