@@ -1,16 +1,15 @@
-import { BarChart3, LogOut, Menu, X } from 'lucide-react'
+import { BarChart3, LogOut, Menu, X } from 'lucide-react';
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-const AdminDashBoad = () => {
+const NavBar = () => {
     const navigate=useNavigate();
     const [menuVisible,setMenuVisible]=useState(false);
     const toggleMenu=()=>{
         setMenuVisible(!menuVisible);
     }
   return (
-    <div className='w-screen h-screen bg-emerald-50 flex flex-col items-center justify-between'>
-      <nav className="w-full h-15 bg-white shadow-xl flex items-center justify-between px-6 py-4">
+    <nav className="w-full h-15 bg-white shadow-xl flex items-center justify-between px-6 py-4">
         <div className="flex items-center gap-2">
           <BarChart3 className="text-green-600" />
           <h2 className="text-green-600 text-2xl font-bold">Vote Pulse</h2>
@@ -31,14 +30,14 @@ const AdminDashBoad = () => {
         )}
 
         <div className="md:flex hidden flex-row justify-center items-center gap-3">
-          <button className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
+          <button onClick={()=>navigate("/admin/dashboard")} className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
             Dashboard
           </button>
-          <button className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
+          <button onClick={()=>navigate("/admin/polls")} className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
             Polls
           </button>
-          <button className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
-            Users
+          <button onClick={()=>navigate("/admin/voters")} className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
+            Voters
           </button>
           <button className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
             Profile
@@ -57,13 +56,13 @@ const AdminDashBoad = () => {
         {menuVisible && (
           <div className="fixed top-16 z-20 right-6 bg-white shadow-lg rounded-lg p-4 w-48 flex flex-col items-start">
             <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
-              <a href="#">Dashboard</a>
+              <a onClick={()=>navigate("/admin/dashboard")}>Dashboard</a>
             </p>
             <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
-              <a href="#">Polls</a>
+              <a onClick={()=>navigate("/admin/polls")}>Polls</a>
             </p>
             <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
-              <a href="#">Users</a>
+              <a onClick={()=>navigate("/admin/voters")}>Voters</a>
             </p>
             <p className="text-xl text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
               <a href="#">Profile</a>
@@ -72,16 +71,12 @@ const AdminDashBoad = () => {
               onClick={() => navigate('/login/navigator')}
               className="w-full bg-gradient-to-r from-green-400 to-emerald-600 px-5 py-2 rounded-lg text-white font-medium hover:from-green-500 hover:to-emerald-700 transition duration-200"
             >
-              Login
+              Logout <LogOut className="inline mr-2" size={20} />
             </button>
           </div>
         )}
       </nav>
-      <div className="w-full h-full flex items-center justify-center">
-
-      </div>
-    </div>
   )
 }
 
-export default AdminDashBoad
+export default NavBar

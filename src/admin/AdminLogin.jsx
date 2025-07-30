@@ -40,11 +40,12 @@ const AdminLogin = () => {
         }
         const message=await response.json();
         localStorage.setItem("user",JSON.stringify(message.user_name));
+        localStorage.setItem("id",message.user_id);
         localStorage.setItem("token",message.token);
         toast.success("Login successfull");
         navigate("/admin/dashboard");
        }catch(err){
-        toast.error("Invalid credentials");
+        toast.error("Invalid credentials:"+err.message);
         
        }
     }
@@ -79,7 +80,7 @@ const AdminLogin = () => {
                 <EyeClosed className='text-green-500 cursor-pointer' size={50} onClick={lockPassword}/>
               }
             </div>
-            <button className='bg-green-500 text-white p-5 rounded-lg w-[400px] cursor-pointer' onClick={validateForm}>Login</button>
+            <button className='bg-emerald-500 text-white p-5 rounded-lg w-[400px] cursor-pointer' onClick={validateForm}>Login</button>
         </div>
       </div>
     </div>

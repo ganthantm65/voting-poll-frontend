@@ -42,7 +42,7 @@ const UserLogin = () => {
         localStorage.setItem("token",message.token);
         toast.success("Login successfull");
        }catch(err){
-        toast.error("Invalid credentials");
+        toast.error(err.message);
        }
     }
   return (
