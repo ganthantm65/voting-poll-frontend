@@ -19,7 +19,7 @@ function App() {
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route path="/admin/add" element={<AddAdmin/>}/>
         <Route path="/login/navigator" element={<LoginNavigator />} />
-        <Route path="/admin/dashboard" element={<AdminDashBoad />} />
+        <Route path="/admin/dashboard" element={<AdminDashBoad/>} />
         <Route path="/admin/polls" element={<AdminPolls/>}/>
         <Route path="/admin/polls/create" element={<PollCreator />} />
         <Route path="/admin/polls/edit" element={<PollEdit/>}/>

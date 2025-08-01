@@ -68,9 +68,6 @@ const NavBar = () => {
             `}>
             Voters
           </button>
-          <button className="text-gray-700 cursor-pointer hover:text-green-600 transition duration-200">
-            Profile
-          </button>
         </div>
 
         <LogOut
@@ -92,9 +89,6 @@ const NavBar = () => {
             </p>
             <p className="text-md text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
               <a onClick={()=>navigate("/admin/voters")}>Voters</a>
-            </p>
-            <p className="text-md text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
-              <a href="#">Profile</a>
             </p>
             <button
               onClick={() => navigate('/login/navigator')}
