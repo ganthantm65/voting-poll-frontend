@@ -80,7 +80,7 @@ const NavBar = () => {
         />
 
         {menuVisible && (
-          <div className="absolute top-12 z-20 right-1 bg-white shadow-lg w-screen p-6 flex flex-col items-start">
+          <div className="absolute md:hidden top-12 z-20 right-1 bg-white shadow-lg w-screen p-6 flex flex-col items-start">
             <p className="text-md text-gray-700 hover:text-green-500 transition duration-200 cursor-pointer py-2">
               <a onClick={()=>navigate("/admin/dashboard")}>Dashboard</a>
             </p>

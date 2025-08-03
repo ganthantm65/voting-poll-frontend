@@ -1,12 +1,14 @@
 import { Eye, EyeClosed, LockIcon, User2, User2Icon } from 'lucide-react'
 import React, {  useState } from 'react'
 import toast, { Toaster } from 'react-hot-toast';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const UserLogin = () => {
     const [passVisible,setPassVisible]=useState(false);
     const [userName,setUserName]=useState();
     const [password,setPassword]=useState();
+    const navigate=useNavigate();
+
     const updateUserName=(e)=>{
       setUserName(e.target.value);
     }
@@ -34,13 +36,15 @@ const UserLogin = () => {
        }
        try{
         const response=await fetch(url,options);
-        if(!response.ok){
+        if(!response.ok && response.status===200){
           throw new Error(response.statusText);
         }
         const message=await response.json();
-        localStorage.setItem("user",JSON.stringify(message.user_name));
+        localStorage.setItem("user",message.user_name);
         localStorage.setItem("token",message.token);
-        toast.success("Login successfull");
+        localStorage.setItem("e_mail",message.e_mail);
+        localStorage.setItem("id",message.user_id)
+        navigate("/user/dashboard")
        }catch(err){
         toast.error(err.message);
        }
@@ -76,7 +80,7 @@ const UserLogin = () => {
                 <EyeClosed className='text-green-500 cursor-pointer' size={50} onClick={lockPassword}/>
               }
             </div>
-            <button className='bg-green-500 text-white p-5 rounded-lg w-[400px] cursor-pointer' onClick={validateForm}>Login</button>
+            <button className='bg-emerald-500 text-white p-5 rounded-lg w-[400px] cursor-pointer' onClick={validateForm}>Login</button>
             <p className='text-sm text-gray-500'>Don't have an account? <Link to="/user/register" className='text-green-500'>Register</Link></p>
         </div>
       </div>
